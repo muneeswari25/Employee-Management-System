@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Employee Management System</h1>
+            <p class="subtitle">Manage your employees efficiently</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section">
+                <div class="section-header">
+                    <h2>Employee Form</h2>
+                </div>
+                <form id="employeeForm" class="employee-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="employeeId">Employee ID</label>
+                            <input type="text" id="employeeId" placeholder="Auto-generated" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="123-456-7890">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department">Department *</label>
+                            <select id="department" required>
+                                <option value="">Select Department</option>
+                                <option value="IT">IT</option>
+                                <option value="HR">HR</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Operations">Operations</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position *</label>
+                            <input type="text" id="position" placeholder="Manager" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input type="number" id="salary" placeholder="50000" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="joiningDate">Joining Date *</label>
+                            <input type="date" id="joiningDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea id="address" placeholder="Employee address" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Add Employee</button>
+                        <button type="reset" class="btn btn-secondary" id="resetBtn">Clear Form</button>
+                        <button type="button" class="btn btn-warning" id="cancelBtn" style="display:none;">Cancel Edit</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Search and Filter Section -->
+            <section class="search-section">
+                <div class="section-header">
+                    <h2>Search & Filter</h2>
+                </div>
+                <div class="search-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search by name, email, or ID..." class="search-input">
+                        <button class="btn btn-small" id="clearSearchBtn">Clear</button>
+                    </div>
+                    <div class="filter-box">
+                        <label for="filterDepartment">Filter by Department:</label>
+                        <select id="filterDepartment" class="filter-select">
+                            <option value="">All Departments</option>
+                            <option value="IT">IT</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Operations">Operations</option>
+                        </select>
+                    </div>
+                    <div class="export-box">
+                        <button class="btn btn-info" id="exportBtn">Export as CSV</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Employee Table Section -->
+            <section class="table-section">
+                <div class="section-header">
+                    <h2>Employee List</h2>
+                    <span class="employee-count">Total: <span id="employeeCount">0</span></span>
+                </div>
+                <div class="table-responsive">
+                    <table id="employeeTable" class="employee-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Salary</th>
+                                <th>Joining Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeTableBody">
+                            <tr class="empty-row">
+                                <td colspan="9" class="empty-message">No employees added yet. Add your first employee!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Employee Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Employee Details</h3>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeModalFooterBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/employees.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
