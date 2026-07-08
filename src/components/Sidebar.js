@@ -1,42 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  FaHome, 
-  FaUsers, 
-  FaBuilding, 
-  FaCalendarAlt, 
-  FaMoneyBillWave, 
-  FaChartBar 
-} from 'react-icons/fa';
-import '../styles/Sidebar.css';
 
-function Sidebar({ open }) {
-  const menuItems = [
-    { label: 'Dashboard', icon: <FaHome />, path: '/' },
-    { label: 'Employees', icon: <FaUsers />, path: '/employees' },
-    { label: 'Departments', icon: <FaBuilding />, path: '/departments' },
-    { label: 'Attendance', icon: <FaCalendarAlt />, path: '/attendance' },
-    { label: 'Payroll', icon: <FaMoneyBillWave />, path: '/payroll' },
-    { label: 'Reports', icon: <FaChartBar />, path: '/reports' },
-  ];
-
+const Sidebar = ({ open }) => {
   return (
     <aside className={`sidebar ${open ? 'open' : 'closed'}`}>
-      <div className="sidebar-content">
-        {menuItems.map((item, index) => (
-          <Link 
-            key={index} 
-            to={item.path} 
-            className="sidebar-item"
-            title={item.label}
-          >
-            <span className="sidebar-icon">{item.icon}</span>
-            {open && <span className="sidebar-label">{item.label}</span>}
-          </Link>
-        ))}
-      </div>
+      <nav className="sidebar-nav">
+        <Link to="/" className="sidebar-link">Dashboard</Link>
+        <Link to="/employees" className="sidebar-link">Employees</Link>
+        <Link to="/employees/add" className="sidebar-link">Add Employee</Link>
+        <Link to="/departments" className="sidebar-link">Departments</Link>
+        <Link to="/attendance" className="sidebar-link">Attendance</Link>
+        <Link to="/payroll" className="sidebar-link">Payroll</Link>
+        <Link to="/reports" className="sidebar-link">Reports</Link>
+      </nav>
     </aside>
   );
-}
+};
 
 export default Sidebar;
